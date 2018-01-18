@@ -14,7 +14,7 @@ package
       
       public function re()
       {
-		 var param:Object = root.loaderInfo.parameters;
+	 var param:Object = root.loaderInfo.parameters;
          var member1:Object = null;
          var myJson:String = null;
          super();
