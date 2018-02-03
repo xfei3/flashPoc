@@ -15,24 +15,27 @@ package
       public function re()
       {
 		 var param:Object = root.loaderInfo.parameters;
-         //var member1:Object = null;
-         //var myJson:String = null;
          super();
 		 var jsonStr:String = param["str"];
 		 var hostUrl:String = param["host"];
 		 var ctype:String = param["ctype"];
-         //member1 = new Object();
-         //member1 = jsonStr;
-        // var myData:Object = member1;
-         //myJson = JSON.stringify(myData);
-         //myJson = JSON.stringify(myData);
+		 var m:String = param["method"];
          var url:String = hostUrl;
+		 var dataSet:String="Null";
          var request:URLRequest = new URLRequest(url);
          request.requestHeaders.push(new URLRequestHeader("Content-Type",ctype));
-         request.data = jsonStr;
-         request.method = URLRequestMethod.POST;
+		 request.method = URLRequestMethod.GET;
+		 if(m!=null&&m=="POST"){
+          request.method = URLRequestMethod.POST;
+		  request.data = jsonStr;
+		 }
          var urlLoader:URLLoader = new URLLoader();
-
+		 urlLoader.dataFormat = URLLoaderDataFormat.TEXT;
+		 urlLoader.addEventListener(Event.COMPLETE, urlLoader_complete);
+		 function urlLoader_complete(evt:Event):void {
+         dataSet = urlLoader.data;
+		 ExternalInterface.call("alert", dataSet);
+		 }
          try
          {
             urlLoader.load(request);
