@@ -1,5 +1,5 @@
 # flashPoc
-POC for using flash to bypass content-type check.
+POC for using flash to bypass content-type check. or send CORS request.
 This repo contains some POC code.
 Main actionscript code is from internet. I just improved it a little bit. 
 
